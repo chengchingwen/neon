@@ -64,7 +64,7 @@ def ingest_cifar10(out_dir, padded_size, overwrite=False):
             img_path = os.path.join(img_paths[setn][lbl[0]], str(idx) + '.png')
             im = np.pad(img.reshape((3, 32, 32)), pad_width, mode='mean')
             im = Image.fromarray(np.uint8(np.transpose(im, axes=[1, 2, 0]).copy()))
-            im.save(os.path.join(out_dir, img_path), format='PNG')
+            im.save(img_path, format='PNG')
             records.append((os.path.relpath(img_path, out_dir),
                             os.path.relpath(lbl_paths[lbl[0]], out_dir)))
         np.savetxt(manifest, records, fmt='%s,%s')
